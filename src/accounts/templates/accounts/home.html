@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block base_head %}
+<title>Your Account</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="row mt-3">
+	<div class="col-12">
+		<h1>Your Account</h1>
+		<hr/>
+	</div>
+	<div class="col-12 col-md-3 my-3">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Support</h5>
+				<div class="list-group">
+					<a class="list-group-item" href="{% url 'about' %}">About Me</a>
+					{# <a class="list-group-item" href="{% url 'contact' %}">Contact</a> #}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-12 col-md-3 my-3">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Account Details</h5>
+				<div class="list-group">
+					<a class="list-group-item" href="{% url 'account:user-details' %}">Update Profile</a>
+					<a class="list-group-item" href="{% url 'password_change' %}">Change Password</a>
+					<a class="list-group-item" href="{% url 'library' %}">Library</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-12 col-md-3 my-3">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Preferences</h5>
+				<div class="list-group">
+					<a class="list-group-item" href="{% url 'marketing-preferences' %}">Email Marketing</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-12 col-md-3 my-3" id="billing">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Billing</h5>
+				<div class="list-group">
+					<a class="list-group-item" href="{% url 'orders:list' %}">Your Orders</a>
+					<a class="list-group-item" href="{% url 'billing:payment-method-list' %}">Saved Payment Methods</a>
+					<a class="list-group-item" href="{% url 'address:list' %}">Manage Addresses</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-12 col-md-3 my-3">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">History</h5>
+				<div class="list-group">
+					<a class="list-group-item" href="{% url 'account:user-product-history' %}">Products</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+
+{% endblock %}

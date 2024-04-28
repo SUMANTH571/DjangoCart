@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block base_head %}
+<title>Sales</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="row mt-3 mb-4">
+	<div class="col-12">
+		<h1>Sales Data</h1>
+		<hr/>
+	</div>
+</div>
+
+<div class="row my-5">
+	<div class="col-4">
+		<h3>Today's Sales</h3>
+		<hr/>
+		<h5>Today's Total: ${{ today.recent_data.total__sum }}</h5>
+		<ul>
+			{% for order in today.recent|slice:":5" %}
+				<li class="my-3">
+					Order: #{{ order.order_id }}<br/>
+					Amount: ${{ order.total }}<br/>
+					Last Updated: {{ order.updated|timesince }} ago
+				</li>
+			{% endfor %}
+		</ul>
+
+		<h3>This week's Sales</h3>
+		<hr/>
+		<h5>Recent Total: ${{ this_week.recent_data.total__sum }}</h5>
+		<ul>
+			{% for order in this_week.recent|slice:":5" %}
+				<li class="my-3">
+					Order: #{{ order.order_id }}<br/>
+					Amount: ${{ order.total }}<br/>
+					Last Updated: {{ order.updated|timesince }} ago
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="col">
+		<canvas class="kart-render-chart" id="thisWeekSales" data-type="week" width="400" height="400"></canvas>
+	</div>
+</div>
+
+<div class="row my-5">
+	<div class="col-12">
+		<h2>Previous 4 weeks</h2>
+		<hr/>
+	</div>
+	<div class="col">
+		<h5>Orders Total: ${{ last_four_weeks.recent_data.total__sum }}</h5>
+		<h5>Shipped Total: {% if last_four_weeks.shipped_data.total__sum %}${{ last_four_weeks.shipped_data.total__sum }}{% endif %}</h5>
+		<h5>Paid Total: ${{ last_four_weeks.paid_data.total__sum }}</h5>
+	</div>
+	<div class="col">
+		<canvas class="kart-render-chart" id="fourWeekSales" data-type="four_weeks" width="400" height="400"></canvas>
+	</div>
+</div>
+
+{% endblock %}

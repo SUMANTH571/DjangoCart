@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block base_head %}
+<title>{{ title }}</title>
+{% endblock %}
+
+{% block content_fluid %}
+
+{% include 'base/carousel.html' %}
+
+<div class="row">
+  <div class="col-12 mt-5 mb-2">
+    <h3 class="text-center"><b>Featured Products</b></h3>
+    <hr/>
+  </div>
+  {% for feature in featured_products %}
+    <div class="col my-2">
+      {% include 'products/snippets/card.html' with instance=feature %}
+    </div>
+  {% endfor %}
+</div>
+<br/>
+<div class="row">
+  <div class="col-12 mt-5 mb-2">
+    <h3 class="text-center"><b>Our Digital Products Collection</b></h3>
+    <hr/>
+  </div>
+  {% for digital in digital_products %}
+    <div class="col my-2">
+      {% include 'products/snippets/card.html' with instance=digital %}
+    </div>
+  {% endfor %}
+</div>
+<br/>
+{% if recently_viewed %}
+  <div class="row">
+    <div class="col-12 mt-5 mb-2">
+      <h3 class="text-center"><b>Your Recently Viewed Items</b></h3>
+      <hr/>
+    </div>
+    {% for recent in recently_viewed %}
+      <div class="col my-2">
+        {% include 'products/snippets/card.html' with instance=recent %}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% endblock %}
